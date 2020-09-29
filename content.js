@@ -8,7 +8,6 @@ const observer = new MutationObserver((mutations) => {
       if (commentContainer) {
         addConventionalCommentUIToCommentToolbar(commentContainer);
       }
-      console.log("added node", commentContainer);
     }
   }
 });
