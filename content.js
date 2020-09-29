@@ -93,15 +93,19 @@ function addConventionalCommentUIToCommentToolbar(commentContainerEl) {
     const textAreaEl = commentContainerEl.querySelector(
       "textarea.remarkup-assist-textarea"
     );
-    const prefix = `${
+    const commentLabel = `${
       labelData.stylePrefix ? `(${labelData.stylePrefix})` : ""
     }{nav, ${labelData.icon ? ` icon=${labelData.icon},` : ""} name=${
       select.value
-    }} `;
-    textAreaEl.value = `${prefix}\n${textAreaEl.value}`;
+    }:} `;
+    const cursor = textAreaEl.selectionStart || 0;
+    const prefix = textAreaEl.value.substring(0, cursor);
+    const suffix = textAreaEl.value.substring(cursor);
+    textAreaEl.value = `${prefix}${commentLabel}${suffix}`;
     select.value = "";
     textAreaEl.focus();
-    textAreaEl.selectionStart = textAreaEl.selectionEnd = prefix.length;
+    textAreaEl.selectionStart = textAreaEl.selectionEnd =
+      cursor + commentLabel.length;
   });
 
   const separator = document.createElement("span");
