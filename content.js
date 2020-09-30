@@ -1,18 +1,3 @@
-// Listen for DOM Mutation in order to detect when the comment textarea is displayed on the page
-const observer = new MutationObserver((mutations) => {
-  for (let mutation of mutations) {
-    for (let addedNode of mutation.addedNodes) {
-      const commentContainer = addedNode.querySelector
-        ? addedNode.querySelector(".differential-inline-comment-edit")
-        : null;
-      if (commentContainer) {
-        addConventionalCommentUIToCommentToolbar(commentContainer);
-      }
-    }
-  }
-});
-observer.observe(document, { childList: true, subtree: true });
-
 const CONVENTIONAL_COMMENTS = {
   nitpick: {
     icon: "info-circle",
@@ -40,6 +25,26 @@ const CONVENTIONAL_COMMENTS = {
     icon: "thumbs-up",
   },
 };
+
+// Add the UI to the main comment textarea (the one at the bottom of the page)
+addConventionalCommentUIToCommentToolbar(
+  document.querySelector(".phui-comment-form-view")
+);
+
+// Listen for DOM Mutation in order to detect when the comment textarea is displayed on the page
+const observer = new MutationObserver((mutations) => {
+  for (let mutation of mutations) {
+    for (let addedNode of mutation.addedNodes) {
+      const commentContainer = addedNode.querySelector
+        ? addedNode.querySelector(".differential-inline-comment-edit")
+        : null;
+      if (commentContainer) {
+        addConventionalCommentUIToCommentToolbar(commentContainer);
+      }
+    }
+  }
+});
+observer.observe(document, { childList: true, subtree: true });
 
 /**
  *

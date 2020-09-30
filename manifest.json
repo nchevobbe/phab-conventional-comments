@@ -2,7 +2,7 @@
   "description": "Adds a control in Phabricator comment toolbar to insert pre-defined label in the comment textarea",
   "manifest_version": 2,
   "name": "phab-conventional-comments",
-  "version": "0.2",
+  "version": "0.3",
   "homepage_url": "https://github.com/nchevobbe/phab-conventional-comments",
   "icons": {},
   "permissions": [
