@@ -24,6 +24,9 @@ const CONVENTIONAL_COMMENTS = {
   praise: {
     icon: "thumbs-up",
   },
+  note: {
+    icon: "sticky-note",
+  },
 };
 
 // Add the UI to the main comment textarea (the one at the bottom of the page)
